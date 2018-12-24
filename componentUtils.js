@@ -1,3 +1,5 @@
+import camelCase from "lodash/camelCase";
+
 export function getInstance(compName) {
   return new compName();
 }
@@ -52,4 +54,30 @@ function getMatches(string, regex, index) {
     matches.push(match[index]);
   }
   return matches;
+}
+
+let componentExceptions = ['RouterLink', 'RouterView', 'ElDropdownMenu'];
+let predefinedComponents = ['ElButton', 'ElCard', 'ElInput', 'ElInputNumber', 'ElRow', 'ElCol'];
+export function getGlobalComponents(self) {
+  let components = self.$root.$options.components;
+  let componentArray = [];
+  try {
+    for(let name in components) {
+      if(!predefinedComponents.includes(name)) {
+        continue;
+      }
+      let component = components[name];
+      let slots = extractSlots(component);
+      componentArray.push({
+        component: name,
+        props: {},
+        children: [],
+        content: name,
+        slots
+      })
+    }
+    return componentArray;
+  } catch(e) {
+    return componentArray;
+  }
 }

@@ -3,27 +3,18 @@
         <div class="editor-container">
             <div class="components-area">
                 <h5>Components</h5>
-                <draggable
-                        v-model="allComponents"
-                        class="placeholder-components"
-                        :options="dragOptionsInitial"
-                >
-                    <component
-                            class="draggable-component"
-                            v-for="(comp, index) in allComponents"
-                            :key="index"
-                            :is="comp.component"
-                            v-bind="comp.props"
-                    >
-                        <span v-html="comp.content"></span>
-                    </component>
-                </draggable>
+                <component-list v-model="allComponents" @drag-start="onDragStart" @drag-end="onDragEnd"></component-list>
             </div>
 
             <div class="render-area">
                 <h5>Render Area</h5>
+                <el-switch active-text="Preview" inactive-text="Edit" v-model="previewMode"></el-switch>
+                <hr>
                 <draggable
-                        v-model="componentsToRender"
+                        :value="componentsToRender"
+                        @start="onDragStart"
+                        @end="onDragEnd"
+                        @change="handleComponentsToRender"
                         class="rendered-components"
                         :options="dragOptions"
                 >
@@ -33,6 +24,7 @@
                             :component-data="comp"
                             :drag-options="dragOptions"
                             :index="index"
+                            :preview-mode="previewMode"
                             :key="index"
                             @component-click="componentClick"
                     >
@@ -52,8 +44,8 @@
         </div>
 
         <div class="json-container">
-            <h5>Edit</h5>
-            <code-highlighter :code="generatedCode">
+            <h5>Code</h5>
+            <code-highlighter v-model="generatedCode">
 
             </code-highlighter>
         </div>
@@ -62,18 +54,20 @@
 
 <script>
   import Draggable from "vuedraggable";
-  import { extractProps, extractSlots } from "../componentUtils";
-  import camelCase from "lodash/camelCase";
+  import { extractProps, getGlobalComponents } from "../componentUtils";
   import deepClone from "lodash/cloneDeep";
+  import ComponentList from "./components/ComponentList";
   import ComponentEditor from "./components/ComponentEditor";
   import ComponentRenderer from "./components/ComponentRenderer";
   import CodeHighlighter from "./components/CodeHighlighter";
   import { generateCode } from '../codeGenerator';
+  import {compile} from 'vue-template-compiler';
 
   export default {
     name: "App",
     components: {
       Draggable,
+      ComponentList,
       ComponentEditor,
       ComponentRenderer,
       CodeHighlighter
@@ -81,6 +75,7 @@
     data() {
       return {
         selectedComponentIndex: 0,
+        previewMode: false,
         selectedComponent: {
           props: {},
           slots: []
@@ -113,17 +108,11 @@
           },
           {
             component: "el-row",
-            props: {
-              class: "row"
-            },
             content: "row",
             children: []
           },
           {
             component: "el-col",
-            props: {
-              class: "col"
-            },
             content: "col",
             children: []
           },
@@ -155,14 +144,6 @@
       };
     },
     computed: {
-      dragOptionsInitial() {
-        return {
-          draggable: ".draggable-component",
-          group: { name: "components", pull: "clone", put: false },
-          ghostClass: "draggable-component--ghost",
-          chosenClass: "draggable-component--chosen"
-        };
-      },
       dragOptions() {
         return {
           draggable: ".draggable-component",
@@ -171,36 +152,25 @@
           chosenClass: "draggable-component--chosen"
         };
       },
-      generatedCode() {
-        return generateCode(this.componentTree);
-      }
-    },
-    watch: {
-      componentsToRender: {
-        deep: true,
-        handler(newValue) {
-          this.setComponentData(newValue);
+      generatedCode: {
+        get() {
+          return generateCode(this.componentTree);
+        },
+        set(value) {
+          let result = compile(value);
+          console.log(result);
         }
       }
     },
     mounted() {
-      this.allComponents = this.allComponents.map(this.parseComponent);
+      this.allComponents = getGlobalComponents(this);
     },
     methods: {
-      setComponentData(value) {
-        let tree = deepClone(value);
-        this.componentTree = tree;
+      onDragStart() {
+        this.previewMode = false;
       },
-      parseComponent(component) {
-        let children = component.children.map(this.parseComponent);
-        return {
-          component: component.component,
-          props: component.props,
-          settings: component.settings || {},
-          content: component.content,
-          children,
-          slots: this.getComponentSlots(component.component)
-        };
+      onDragEnd() {
+        this.previewMode = true;
       },
       syncProps(newValue) {
         this.componentTree[this.selectedComponentIndex].props = newValue;
@@ -208,27 +178,19 @@
       syncExtraProps(newValue) {
         this.componentTree[this.selectedComponentIndex].settings = newValue;
       },
-      updateContent(value, component) {
-        console.log("Update", value);
-      },
-      getComponentSlots(compName) {
-        let component = this.getComponent(compName);
-        return extractSlots(component);
+      handleComponentsToRender(evt) {
+        let {added} = evt;
+        if(added) {
+          let {element, newIndex} = added;
+          this.componentTree.splice(newIndex, 0, deepClone(element));
+        }
       },
       componentClick(compName, index) {
-        let component = this.getComponent(compName);
+        let component = this.$root.$options.components[compName];
         let {props, settings} = extractProps(component);
         this.selectedComponent.props = props;
         this.selectedComponent.settings = settings;
         this.selectedComponentIndex = index;
-      },
-      getComponent(compName) {
-        let camelCaseComponentName = camelCase(compName);
-        camelCaseComponentName =
-          camelCaseComponentName.charAt(0).toUpperCase() +
-          camelCaseComponentName.slice(1);
-        let component = this.$root.$options.components[camelCaseComponentName];
-        return component;
       }
     }
   };
@@ -272,21 +234,5 @@
 
     .rendered-components {
         height: 100%;
-    }
-
-    .row {
-        min-height: 50px;
-        width: 100%;
-        border: 1px solid #ebeef5;
-    }
-
-    .col {
-        min-height: 50px;
-        min-width: 50px;
-        border: 1px solid #ebeef5;
-    }
-
-    .demo-form {
-        min-height: 100px;
     }
 </style>
