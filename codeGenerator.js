@@ -1,4 +1,4 @@
-export function generateCode(ast) {
+export function generateCode(ast, level = 0) {
   if (!ast) return '';
   let children = ast.map(elm => {
     let propsString = '';
@@ -15,16 +15,17 @@ export function generateCode(ast) {
         propsString += ` ${propKey}="${propValue}"`;
       }
     }
-    let children = generateCode(elm.children) || elm.content;
+    let children = generateCode(elm.children, level+1) || elm.content;
     if (children) {
       return `<${elm.component}${propsString}>
   ${children}
-</${elm.component}>`
+</${elm.component}>\n`
     }
-    return `<${elm.component}${propsString}><${elm.component}>\n`
+    return `<${elm.component}${propsString}><${elm.component}>`
   });
   let result = children.join('');
-  if (ast.length > 1) {
+
+  if (ast.length > 1 && level === 0) {
     return `<div>
 ${result}
 </div>`

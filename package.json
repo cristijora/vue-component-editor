@@ -13,6 +13,7 @@
     "lodash": "^4.17.11",
     "prismjs": "^1.15.0",
     "register-service-worker": "^1.5.2",
+    "smooshpack": "^0.0.53",
     "vue": "^2.5.17",
     "vue-clipboard2": "^0.2.1",
     "vue-prism-component": "^1.1.1",

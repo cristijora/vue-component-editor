@@ -7,7 +7,10 @@
               :label="key"
               :key="key"
       >
-        <component :is="mappings[prop.type]" v-model="settingsConfig[key]"> </component>
+        <component :is="componentType(prop)"
+                   :values="prop.values"
+                   v-model="settingsConfig[key]">
+        </component>
       </el-form-item>
       <hr>
       <h5>Props</h5>
@@ -16,14 +19,21 @@
         :label="key"
         :key="key"
       >
-        <component :is="mappings[prop.type]" v-model="propsConfig[key]"> </component>
+        <component :is="componentType(prop)"
+                   :values="prop.values"
+                   v-model="propsConfig[key]">
+        </component>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
+import ValueSelect from './editor/ValueSelect'
 export default {
   name: "component-editor",
+  components: {
+    ValueSelect
+  },
   props: {
     componentProps: {
       type: Object,
@@ -45,6 +55,16 @@ export default {
       propsConfig: {},
       settingsConfig: {},
     };
+  },
+  methods: {
+    componentType(prop) {
+      let baseType = this.mappings[prop.type];
+      console.log(prop.values)
+      if(prop.values && prop.values.length) {
+        return 'value-select'
+      };
+      return baseType;
+    }
   },
   watch: {
     propsConfig: {

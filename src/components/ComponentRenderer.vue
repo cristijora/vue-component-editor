@@ -41,9 +41,9 @@
                     @component-click="componentClick"
                     :key="index">
             </component-renderer>
-            <div v-if="componentData.children.length === 0" contenteditable="true" @input="(evt) => onContentChange(evt)">
+            <span v-if="componentData.children.length === 0" contenteditable="true" @blur="(evt) => onContentChange(evt)">
                 {{content}}
-            </div>
+            </span>
         </template>
     </component>
 </template>
@@ -104,7 +104,9 @@
     }
 
     .el-col,
-    .el-row{
+    .el-row,
+    .el-card,
+    .el-form{
         .slot-box.slot-box--default {
             min-height: 150px;
         }

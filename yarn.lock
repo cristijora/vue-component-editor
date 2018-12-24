@@ -1709,6 +1709,11 @@ binary-extensions@^1.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.12.0.tgz#c2d780f53d45bba8317a8902d4ceeaf3a6385b14"
   integrity sha512-DYWGk01lDcxeS/K9IHPGWfT8PsJmbXRtRd2Sx72Tnb8pcYZQFF1oSDb8hJtS1vhp212q1Rzi5dUf9+nq0o9UIg==
 
+binaryextensions@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/binaryextensions/-/binaryextensions-2.1.2.tgz#c83c3d74233ba7674e4f313cb2a2b70f54e94b7c"
+  integrity sha512-xVNN69YGDghOqCCtA6FI7avYrr02mTJjOgB0/f1VPD3pJC8QEvjTKWc4epDx8AqxxA75NI0QpVM2gPJXUbE4Tg==
+
 block-stream@*:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
@@ -2286,6 +2291,25 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
+
+codesandbox-api@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/codesandbox-api/-/codesandbox-api-0.0.20.tgz#174bcd76c9f31521175c6bceabc37da6b1fbc30b"
+  integrity sha512-jhxZzAmjCKBZad8QWMeueiQVFE87igK6F2DBOEVFFJO6jgTXT8qjuzGYepr+B8bjgo/icN7bc/2xmEMBA63s2w==
+
+codesandbox-import-util-types@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/codesandbox-import-util-types/-/codesandbox-import-util-types-1.3.4.tgz#108cd8ec4256f9284a5e75afc0171311ae58afd8"
+  integrity sha512-RWfqvrPSC3MZLFf059jNo61FJR+Eiw2Zg+MsMWR0AXcdgqjaAca8MtGUIw81purMt8OamI4Owk2ng8NlMs2cIg==
+
+codesandbox-import-utils@^1.2.3:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/codesandbox-import-utils/-/codesandbox-import-utils-1.3.6.tgz#f962bf6c699ded52298405ae6c3d83077d49adc7"
+  integrity sha512-mb/kxLy7Ouhny/SxhrF/JExRnNwO3w2cabSgjrpkQOU+l9p6XUlFNyRi/G9oXSjxooZvGGcSCNyoaSq7uNV+jA==
+  dependencies:
+    codesandbox-import-util-types "^1.3.4"
+    istextorbinary "^2.2.1"
+    lz-string "^1.4.4"
 
 collection-visit@^1.0.0:
   version "1.0.0"
@@ -3190,6 +3214,19 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+editions@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/editions/-/editions-1.3.4.tgz#3662cb592347c3168eb8e498a0ff73271d67f50b"
+  integrity sha512-gzao+mxnYDzIysXKMQi/+M1mjy/rjestjg6OPoYTtI+3Izp23oiGZitsl9lPDPiTGXbcSIk1iJWhliSaglxnUg==
+
+editions@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/editions/-/editions-2.1.0.tgz#5c6f6341ef19ee362a3bcbb907fe68e696dbc69e"
+  integrity sha512-yKrimWcvOXcYXtqsOeebbMLynm9qbYVd0005wveGU2biPxJaJoxA0jtaZrxiMe3mAanLr5lxoYFVz5zjv9JdnA==
+  dependencies:
+    errlop "^1.0.3"
+    semver "^5.6.0"
+
 editorconfig@^0.15.2:
   version "0.15.2"
   resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.15.2.tgz#047be983abb9ab3c2eefe5199cb2b7c5689f0702"
@@ -3272,6 +3309,13 @@ entities@~1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
+
+errlop@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/errlop/-/errlop-1.0.3.tgz#dba29c90cf832c3d2ce469fe515d7e5eef2c6676"
+  integrity sha512-5VTnt0yikY4LlQEfCXVSqfE6oLj1HVM4zVSvAKMnoYjL/zrb6nqiLowZS4XlG7xENfyj7lpYWvT+wfSCr6dtlA==
+  dependencies:
+    editions "^1.3.4"
 
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
@@ -5302,6 +5346,15 @@ istanbul-reports@^1.5.1:
   dependencies:
     handlebars "^4.0.3"
 
+istextorbinary@^2.2.1:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/istextorbinary/-/istextorbinary-2.3.0.tgz#29458d7b10edcb52f4db9c57945bb67cd20cc4fd"
+  integrity sha512-xs+IFjzw1/5n45nMYUh2ipLWGarmE0bDVR85WAiYUXzawc8NYn1WW0qaq2rSEFIR3NoNkaAvOr3FVMojFz5uUg==
+  dependencies:
+    binaryextensions "^2.1.2"
+    editions "^2.0.2"
+    textextensions "^2.4.0"
+
 javascript-stringify@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-1.6.0.tgz#142d111f3a6e3dae8f4a9afd77d45855b5a9cce3"
@@ -5998,6 +6051,11 @@ lodash.defaultsdeep@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
   integrity sha1-vsECT4WxvZbL6kBbI8FK1kQ6b4E=
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.mapvalues@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
@@ -6099,6 +6157,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lz-string@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
+  integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
 
 make-dir@^1.0.0:
   version "1.3.0"
@@ -8528,6 +8591,15 @@ slice-ansi@2.0.0:
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
 
+smooshpack@^0.0.53:
+  version "0.0.53"
+  resolved "https://registry.yarnpkg.com/smooshpack/-/smooshpack-0.0.53.tgz#aa397ca43619912e8ac0aa32012846ff4feaa5e8"
+  integrity sha512-FVXvKvZOz5+Tk/zUJ/wxM+ftu1yZtFEmeQl4chCqbzK/reU0L/OdDiYpx+/27Jt2VX09j08oIzwoyQ5fHH4+WQ==
+  dependencies:
+    codesandbox-api "^0.0.20"
+    codesandbox-import-utils "^1.2.3"
+    lodash.isequal "^4.5.0"
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -9077,6 +9149,11 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+textextensions@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.4.0.tgz#6a143a985464384cc2cff11aea448cd5b018e72b"
+  integrity sha512-qftQXnX1DzpSV8EddtHIT0eDDEiBF8ywhFYR2lI9xrGtxqKN+CvLXhACeCIGbCpQfxxERbrkZEFb8cZcDKbVZA==
 
 thread-loader@^1.2.0:
   version "1.2.0"
