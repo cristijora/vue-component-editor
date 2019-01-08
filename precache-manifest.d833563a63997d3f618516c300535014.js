@@ -8,11 +8,11 @@ self.__precacheManifest = [
     "url": "/vue-component-editor/js/chunk-vendors.4278d390.js"
   },
   {
-    "revision": "408b6f72fd5e30c64b35",
-    "url": "/vue-component-editor/js/app.dce86952.js"
+    "revision": "47d96eb807df820e5444",
+    "url": "/vue-component-editor/js/app.131c8660.js"
   },
   {
-    "revision": "7841e7ffcecabb75b308677a46770d7d",
+    "revision": "799da2dbd489424ef4572d8fd5b55284",
     "url": "/vue-component-editor/index.html"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/vue-component-editor/css/chunk-vendors.3272d0d8.css"
   },
   {
-    "revision": "408b6f72fd5e30c64b35",
+    "revision": "47d96eb807df820e5444",
     "url": "/vue-component-editor/css/app.e24af020.css"
   }
 ];
