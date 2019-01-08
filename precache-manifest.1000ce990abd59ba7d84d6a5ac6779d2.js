@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/vue-component-editor/js/app.dce86952.js"
   },
   {
-    "revision": "13171516c36ae7fb31980eaf3178eb8c",
+    "revision": "7841e7ffcecabb75b308677a46770d7d",
     "url": "/vue-component-editor/index.html"
   },
   {
